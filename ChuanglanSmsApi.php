@@ -4,9 +4,16 @@
  * 该代码仅供学习和研究创蓝接口使用，只是提供一个参考。
  */
 class ChuanglanSmsApi {
+    
+    private $chuanglan_config;
+    
+    public function init($chuanlan_config)
+    {
+        $this->chuanglan_config = $chuanlan_config;
+    }
 
     /**
-     * 发送短信
+     * 发送短信。手机号码，密码，url不再是有效的，留在那里只是为了占位
      *
      * @param string $mobile 手机号码
      * @param string $msg 短信内容
@@ -15,11 +22,11 @@ class ChuanglanSmsApi {
      * @param string $extno   扩展码，可选
      */
     public function sendSMS($account, $pswd, $url, $mobile, $msg, $needstatus = 'false', $product = '', $extno = '') {
-        global $chuanglan_config;
+//        global $chuanglan_config;
         //创蓝接口参数
         $postArr = array(
-            'account' => $account,
-            'pswd' => $pswd,
+            'account' => $this->chuanglan_config['account'],
+            'pswd' => $this->chuanglan_config['pwd'],
             'msg' => $msg,
             'mobile' => $mobile,
             'needstatus' => $needstatus,
@@ -27,7 +34,7 @@ class ChuanglanSmsApi {
             'extno' => $extno
         );
 
-        $result = $this->curlPost($url, $postArr);
+        $result = $this->curlPost($this->chuanglan_config['url'], $postArr);
         return $result;
     }
 
@@ -35,13 +42,13 @@ class ChuanglanSmsApi {
      * 查询额度
      */
     public function queryBalance() {
-        global $chuanglan_config;
+//        global $chuanglan_config;
         //查询参数
         $postArr = array(
-            'account' => $chuanglan_config['api_account'],
-            'pswd' => $chuanglan_config['api_password'],
+            'account' => $this->chuanglan_config['account'],
+            'pswd' => $this->chuanglan_config['pwd'],
         );
-        $result = $this->curlPost($chuanglan_config['api_balance_query_url'], $postArr);
+        $result = $this->curlPost($this->chuanglan_config['api_balance_query_url'], $postArr);
         return $result;
     }
 
