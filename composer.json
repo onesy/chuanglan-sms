@@ -1,0 +1,21 @@
+{
+    "name": "onesy/chuanlan-sms",
+    "description": "创蓝库",
+    "keywords" : ["创蓝短信"],
+    "type": "libaray",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "sunyuw",
+            "email": "wsy@liantoujinrong.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.1"
+    },
+    "minimum-stability": "stable",
+    "time": "2017-01-07 13:16:30",
+    "autoload" : {
+        "files" : ["ChuanglanSmsApi.php"]
+    }
+}
